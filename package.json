@@ -1,0 +1,100 @@
+{
+  "name": "@ykey/raven",
+  "description": "Web Frontend Framework",
+  "version": "0.0.0",
+  "author": {
+    "name": "ykeyjp",
+    "email": "ykey.jp@gmail.com",
+    "url": "https://github.com/ykeyjp"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ],
+    "source": [
+      "lib/**/*.js"
+    ],
+    "powerAssert": false
+  },
+  "browser": "./dist/raven.js",
+  "bugs": "https://github.com/ykeyjp/raven.js/issues",
+  "devDependencies": {
+    "@types/node": "^8.0.5",
+    "ava": "^0.20.0",
+    "browser-env": "^3.0.2",
+    "npm-run-all": "^4.0.2",
+    "nyc": "^11.0.3",
+    "prettier": "^1.5.2",
+    "rollup": "^0.43.0",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "uglify-js": "^3.0.21",
+    "xo": "^0.18.2"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "homepage": "https://github.com/ykeyjp/raven.js",
+  "keywords": [
+    "components",
+    "raven",
+    "ui",
+    "web"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ykeyjp/raven.js.git"
+  },
+  "scripts": {
+    "bundle": "node bundle.js",
+    "cover": "nyc ava",
+    "cover:report": "nyc report --reporter=html",
+    "format": "prettier --write --single-quote --semi=true --trailing-comma es5 --no-bracket-spacing {lib,test}/**/*.js",
+    "lint": "xo {lib,test}/**/*.js",
+    "report": "run-s cover cover:report",
+    "test": "ava"
+  },
+  "types": "./lib/index.d.js",
+  "xo": {
+    "space": true,
+    "envs": [
+      "node",
+      "es6"
+    ],
+    "rules": {
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "no-new-func": [
+        "off"
+      ],
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
+      "operator-linebreak": [
+        "error",
+        "after",
+        {
+          "overrides": {
+            "-=": "before",
+            "+=": "before",
+            "?": "before",
+            ":": "before"
+          }
+        }
+      ]
+    }
+  }
+}
