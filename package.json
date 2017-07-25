@@ -1,7 +1,7 @@
 {
   "name": "@ykey/raven",
   "description": "Web Frontend Framework",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "name": "ykeyjp",
     "email": "ykey.jp@gmail.com",
@@ -18,18 +18,21 @@
   },
   "browser": "./dist/raven.js",
   "bugs": "https://github.com/ykeyjp/raven.js/issues",
+  "dependencies": {
+    "@ykey/util": "https://github.com/ykeyjp/util.js.git"
+  },
   "devDependencies": {
-    "@types/node": "^8.0.5",
-    "ava": "^0.20.0",
-    "browser-env": "^3.0.2",
+    "@types/node": "^8.0.16",
+    "ava": "^0.21.0",
+    "browser-env": "^3.1.0",
     "npm-run-all": "^4.0.2",
     "nyc": "^11.0.3",
-    "prettier": "^1.5.2",
-    "rollup": "^0.43.0",
+    "prettier": "^1.5.3",
+    "rollup": "^0.45.2",
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "uglify-js": "^3.0.21",
+    "uglify-js": "^3.0.26",
     "xo": "^0.18.2"
   },
   "engines": {
@@ -61,6 +64,7 @@
   "xo": {
     "space": true,
     "envs": [
+      "browser",
       "node",
       "es6"
     ],

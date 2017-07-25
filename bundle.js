@@ -35,19 +35,23 @@ const config = {
 rollup
   .rollup(config)
   .then(bundle => {
-    const result = bundle.generate({
-      format: 'iife',
-      moduleName: config.moduleName,
-    });
-    const minify = uglify.minify(result.code, {
-      sourceMap: {
-        filename: `${moduleName}.js`,
-        url: `${moduleName}.js.map`,
-      },
-    });
-    !fs.existsSync('dist') && fs.mkdirSync('dist');
-    fs.writeFileSync(`dist/${moduleName}.js`, result.code);
-    fs.writeFileSync(`dist/${moduleName}.min.js`, minify.code);
-    fs.writeFileSync(`dist/${moduleName}.min.js.map`, minify.map);
+    return bundle
+      .generate({
+        format: 'iife',
+        moduleName: config.moduleName,
+        exports: 'named',
+      })
+      .then(result => {
+        const minify = uglify.minify(result.code, {
+          sourceMap: {
+            filename: `${moduleName}.js`,
+            url: `${moduleName}.js.map`,
+          },
+        });
+        !fs.existsSync('dist') && fs.mkdirSync('dist');
+        fs.writeFileSync(`dist/${moduleName}.js`, result.code);
+        fs.writeFileSync(`dist/${moduleName}.min.js`, minify.code);
+        fs.writeFileSync(`dist/${moduleName}.js.map`, minify.map);
+      });
   })
   .catch(err => console.log(err));
