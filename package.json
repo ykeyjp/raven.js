@@ -1,7 +1,7 @@
 {
   "name": "@ykey/raven",
   "description": "Web Frontend Framework",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "author": {
     "name": "ykeyjp",
     "email": "ykey.jp@gmail.com",
@@ -19,7 +19,7 @@
   "browser": "./dist/raven.js",
   "bugs": "https://github.com/ykeyjp/raven.js/issues",
   "dependencies": {
-    "@ykey/util": "https://github.com/ykeyjp/util.js.git"
+    "@ykey/util": "^0.0.6"
   },
   "devDependencies": {
     "@types/node": "^8.0.16",
@@ -29,15 +29,24 @@
     "nyc": "^11.0.3",
     "prettier": "^1.5.3",
     "rollup": "^0.45.2",
-    "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "uglify-js": "^3.0.26",
-    "xo": "^0.18.2"
+    "rollup-plugin-typescript": "^0.8.1",
+    "tslint": "^5.5.0",
+    "typedoc": "^0.8.0",
+    "typescript": "^2.4.2",
+    "uglify-js": "^3.0.26"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=7.6"
   },
+  "files": [
+    "package.json",
+    "README.md",
+    "lib",
+    "dist",
+    "doc"
+  ],
   "homepage": "https://github.com/ykeyjp/raven.js",
   "keywords": [
     "components",
@@ -52,53 +61,21 @@
     "url": "https://github.com/ykeyjp/raven.js.git"
   },
   "scripts": {
+    "build": "node ./node_modules/typescript/bin/tsc -p tsconfig.json",
+    "build:watch": "node ./node_modules/typescript/bin/tsc -p tsconfig.json -w",
     "bundle": "node bundle.js",
-    "cover": "nyc ava",
-    "cover:report": "nyc report --reporter=html",
-    "format": "prettier --write --single-quote --semi=true --trailing-comma es5 --no-bracket-spacing {lib,test}/**/*.js",
-    "lint": "xo {lib,test}/**/*.js",
-    "report": "run-s cover cover:report",
-    "test": "ava"
+    "doc": "typedoc --out doc --mode modules --target ES6 src/lib/**/*.ts",
+    "format": "prettier --write --print-width 120 --single-quote --semi=true --trailing-comma es5 --no-bracket-spacing src/{lib,test}/**/*.ts",
+    "lint": "tslint src/**/*.ts",
+    "report": "run-s test:build report:cover report:html",
+    "report:cover": "nyc ava",
+    "report:html": "nyc report --reporter=html",
+    "test": "run-s test:build test:run",
+    "test:build": "node ./node_modules/typescript/bin/tsc -p tsconfig.test.json",
+    "test:build:watch": "node ./node_modules/typescript/bin/tsc -p tsconfig.test.json -w",
+    "test:run": "ava",
+    "test:run:watch": "ava -w",
+    "test:watch": "run-p test:build:watch test:run:watch"
   },
-  "types": "./lib/index.d.js",
-  "xo": {
-    "space": true,
-    "envs": [
-      "browser",
-      "node",
-      "es6"
-    ],
-    "rules": {
-      "quotes": [
-        "error",
-        "single",
-        {
-          "avoidEscape": true
-        }
-      ],
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ],
-      "no-new-func": [
-        "off"
-      ],
-      "space-before-function-paren": [
-        2,
-        "never"
-      ],
-      "operator-linebreak": [
-        "error",
-        "after",
-        {
-          "overrides": {
-            "-=": "before",
-            "+=": "before",
-            "?": "before",
-            ":": "before"
-          }
-        }
-      ]
-    }
-  }
+  "types": "./lib/index.d.js"
 }

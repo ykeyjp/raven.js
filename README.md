@@ -6,15 +6,11 @@
 
 ## Installation
 
-- package.json
-```json
-{
-  "dependencies": {
-    "@ykey/raven": "https://github.com/ykeyjp/raven.js.git"
-  }
-}
 ```
-and `npm update` or `yarn install`.
+$ npm install @ykey/raven
+# or
+$ yarn add @ykey/raven
+```
 
 ## Contribution
 

@@ -1,19 +1,12 @@
 const fs = require('fs');
 const rollup = require('rollup');
-const buble = require('rollup-plugin-buble');
+const typescript = require('rollup-plugin-typescript');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const uglify = require('uglify-js');
 const plugins = [
-  buble({
-    target: {
-      chrome: 52,
-      firefox: 48,
-      safari: 9,
-      ie: 11,
-      edge: 12,
-      node: 6,
-    },
+  typescript({
+    typescript: require('typescript'),
   }),
   resolve({
     module: true,
@@ -24,7 +17,7 @@ const plugins = [
 ];
 const moduleName = 'raven';
 const config = {
-  entry: 'lib/index.js',
+  entry: 'src/lib/index.ts',
   dest: 'dist/raven.js',
   format: 'iife',
   moduleName: moduleName,
