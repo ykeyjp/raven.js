@@ -1,9 +1,8 @@
-import flatten from '@ykey/util/lib/array/flatten';
-import clone from '@ykey/util/lib/object/clone';
+import {clone, flatten} from '@ykey/util';
 import {IComponent} from '../types/IComponent';
 import {IVNode} from '../types/IVNode';
 import {ITemplateNode} from '../types/template';
-import * as factory from './factory';
+import factory from './factory';
 
 interface IItemObject {
   key: string | number;

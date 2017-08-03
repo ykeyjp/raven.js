@@ -6,7 +6,7 @@
       "dom",
       "es2015"
     ],
-    "outDir": "./",
+    "outDir": "./test",
     "removeComments": true,
     "strict": true,
     "noImplicitAny": true,

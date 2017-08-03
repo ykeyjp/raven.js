@@ -1,23 +1,13 @@
 const fs = require('fs');
 const rollup = require('rollup');
-const typescript = require('rollup-plugin-typescript');
+const buble = require('rollup-plugin-buble');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const uglify = require('uglify-js');
-const plugins = [
-  typescript({
-    typescript: require('typescript'),
-  }),
-  resolve({
-    module: true,
-    jsnext: true,
-    main: true,
-  }),
-  commonjs({}),
-];
+const plugins = [resolve(), commonjs(), buble()];
 const moduleName = 'raven';
 const config = {
-  entry: 'src/lib/index.ts',
+  entry: 'es6/index.js',
   dest: 'dist/raven.js',
   format: 'iife',
   moduleName: moduleName,
@@ -32,7 +22,6 @@ rollup
       .generate({
         format: 'iife',
         moduleName: config.moduleName,
-        exports: 'named',
       })
       .then(result => {
         const minify = uglify.minify(result.code, {

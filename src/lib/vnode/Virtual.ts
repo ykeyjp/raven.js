@@ -1,5 +1,5 @@
-import flatten from '@ykey/util/lib/array/flatten';
-import * as refs from '../component/refs';
+import {flatten} from '@ykey/util';
+import refs from '../component/refs';
 import {IComponent, IComponentInfo} from '../types/IComponent';
 import {IVNode} from '../types/IVNode';
 import {ITemplateNode} from '../types/template';

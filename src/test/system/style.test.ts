@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as style from '../../lib/system/style';
+import style from '../../lib/system/style';
 import '../browser';
 
 test('generate scope', t => {

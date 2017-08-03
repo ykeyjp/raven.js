@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as factory from '../../lib/vnode/factory';
+import factory from '../../lib/vnode/factory';
 import Looper from '../../lib/vnode/Looper';
 import VElement from '../../lib/vnode/VElement';
 import Virtual from '../../lib/vnode/Virtual';

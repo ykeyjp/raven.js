@@ -1,4 +1,4 @@
-import * as componentManager from '../system/component';
+import componentManager from '../system/component';
 import {IComponent} from '../types/IComponent';
 import {IVNode} from '../types/IVNode';
 import {ITemplateNode} from '../types/template';
@@ -8,7 +8,7 @@ import Virtual from './Virtual';
 import VText from './VText';
 import Yield from './Yield';
 
-export function build(tmpl: ITemplateNode | ITemplateNode[], component: IComponent): IVNode | IVNode[] {
+function build(tmpl: ITemplateNode | ITemplateNode[], component: IComponent): IVNode | IVNode[] {
   if (!tmpl) {
     return [];
   }
@@ -46,3 +46,5 @@ export function build(tmpl: ITemplateNode | ITemplateNode[], component: ICompone
   }
   return velement;
 }
+
+export default {build};

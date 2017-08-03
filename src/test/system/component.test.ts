@@ -1,6 +1,6 @@
 import test from 'ava';
 import Tag from '../../lib/component/Tag';
-import * as component from '../../lib/system/component';
+import component from '../../lib/system/component';
 import '../browser';
 import {DummyComponent} from './dummy';
 

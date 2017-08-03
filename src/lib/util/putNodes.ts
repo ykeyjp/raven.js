@@ -1,4 +1,4 @@
-import flatten from '@ykey/util/lib/array/flatten';
+import {flatten} from '@ykey/util';
 
 export default function putNodes(parent: Node, children: Node | Node[] | null | Array<Node | Node[] | null>) {
   if (!parent || !children) {

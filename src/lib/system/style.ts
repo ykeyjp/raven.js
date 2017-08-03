@@ -1,11 +1,11 @@
 import {IMixedStyle, IStyleMediaRule, IStyleRule} from '../types/template';
 
-export const env: {components: any; sheet: CSSStyleSheet | null} = {
+const env: {components: any; sheet: CSSStyleSheet | null} = {
   components: {},
   sheet: null,
 };
 
-export function stylesheet(): CSSStyleSheet {
+function stylesheet(): CSSStyleSheet {
   if (!env.sheet) {
     const styles = Array.from(document.styleSheets).filter(
       s => s.ownerNode && (s.ownerNode as HTMLStyleElement).getAttribute('rel') === 'raven'
@@ -22,11 +22,11 @@ export function stylesheet(): CSSStyleSheet {
   return env.sheet;
 }
 
-export function generate(name: string): string {
+function generate(name: string): string {
   return 'data-r-' + name.toLowerCase();
 }
 
-export function register(name: string, rules: IMixedStyle[]): void {
+function register(name: string, rules: IMixedStyle[]): void {
   const selectors: string[] = [];
   rules.forEach(rule => {
     if (rule.type === 'media') {
@@ -50,7 +50,7 @@ function insertRules(selector: string, rules: string): void {
   sheet.insertRule(selector + '{' + rules + '}', sheet.cssRules.length);
 }
 
-export function unregister(name: string): void {
+function unregister(name: string): void {
   if (Object.prototype.hasOwnProperty.call(env.components, name) && Array.isArray(env.components[name])) {
     const sheet = stylesheet();
     const selectors = env.components[name];
@@ -68,3 +68,11 @@ export function unregister(name: string): void {
     });
   }
 }
+
+export default {
+  env,
+  generate,
+  register,
+  stylesheet,
+  unregister,
+};

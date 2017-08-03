@@ -1,41 +1,47 @@
-import flatten, {INested} from '@ykey/util/lib/array/flatten';
-import SimpleEvent from '@ykey/util/lib/event/SimpleEvent';
-import clone from '@ykey/util/lib/object/clone';
-import diff, {IDiffResult} from '@ykey/util/lib/object/diff';
-import toCamelCase from '@ykey/util/lib/string/toCamelCase';
-import toKebabCase from '@ykey/util/lib/string/toKebabCase';
-import toPascalCase from '@ykey/util/lib/string/toPascalCase';
-import toSnakeCase from '@ykey/util/lib/string/toSnakeCase';
-import * as componentManager from './system/component';
-import * as mixinManager from './system/mixin';
-import * as styleManager from './system/style';
+import {
+  clone,
+  diff,
+  each,
+  flatten,
+  IDiffResult,
+  INested,
+  map,
+  toCamelCase,
+  toKebabCase,
+  toPascalCase,
+  toSnakeCase,
+} from '@ykey/util';
+import componentManager, {ITagOptions} from './system/component';
+import mixinManager from './system/mixin';
+import styleManager from './system/style';
+import {IComponent, IComponentConstructor, IComponentInfo, IComponentOptions} from './types/IComponent';
+import {IVNode} from './types/IVNode';
+import {IAttributeObject, IMixedStyle, IStyleMediaRule, IStyleRule, ITemplateNode} from './types/template';
 import putNodes from './util/putNodes';
 
-export const tag = componentManager.tag;
-export const mount = componentManager.mount;
-export const mixin = mixinManager.register;
-export const manager = {
-  component: componentManager,
-  style: styleManager,
+export default {
+  manager: {
+    component: componentManager,
+    style: styleManager,
+  },
+  mixin: mixinManager.register,
+  mount: componentManager.mount,
+  tag: componentManager.tag,
+  utils: {clone, diff, each, flatten, map, toCamelCase, toKebabCase, toPascalCase, toSnakeCase},
 };
-export const utils = {
-  array: {
-    flatten,
-  },
-  event: {
-    SimpleEvent,
-  },
-  node: {
-    putNodes,
-  },
-  object: {
-    clone,
-    diff,
-  },
-  string: {
-    toCamelCase,
-    toKebabCase,
-    toPascalCase,
-    toSnakeCase,
-  },
+
+export {
+  IComponent,
+  IComponentConstructor,
+  IComponentInfo,
+  IComponentOptions,
+  IVNode,
+  IAttributeObject,
+  IMixedStyle,
+  IStyleMediaRule,
+  IStyleRule,
+  ITemplateNode,
+  ITagOptions,
+  IDiffResult,
+  INested,
 };

@@ -1,9 +1,8 @@
-import flatten from '@ykey/util/lib/array/flatten';
-import SimpleEvent from '@ykey/util/lib/event/SimpleEvent';
-import * as mixin from '../system/mixin';
+import {flatten, SimpleEvent} from '@ykey/util';
+import mixin from '../system/mixin';
 import {IComponent, IComponentInfo, IComponentOptions} from '../types/IComponent';
 import {IVNode} from '../types/IVNode';
-import * as factory from '../vnode/factory';
+import factory from '../vnode/factory';
 
 interface ITagOptions {
   isMounted: boolean;

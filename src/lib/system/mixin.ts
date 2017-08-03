@@ -1,10 +1,10 @@
-export const mixins: {[key: string]: any} = {};
+const mixins: {[key: string]: any} = {};
 
-export function register(name: string, mixin: any): void {
+function register(name: string, mixin: any): void {
   mixins[name] = mixin;
 }
 
-export function apply(component: any, name: string): void {
+function apply(component: any, name: string): void {
   if (!mixins[name]) {
     return;
   }
@@ -39,3 +39,9 @@ const baseObjectProps = Object.getOwnPropertyNames(Object.prototype);
 function isBaseObject(proto: object): boolean {
   return Object.getOwnPropertyNames(proto).every(key => baseObjectProps.indexOf(key) !== -1);
 }
+
+export default {
+  apply,
+  mixins,
+  register,
+};

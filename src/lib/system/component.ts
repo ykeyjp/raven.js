@@ -1,11 +1,11 @@
-import flatten from '@ykey/util/lib/array/flatten';
+import {flatten} from '@ykey/util';
 import Tag from '../component/Tag';
 import parseStyle from '../parser/style';
 import parseTemplate from '../parser/template';
 import {IComponent, IComponentConstructor, IComponentInfo, IComponentOptions} from '../types/IComponent';
 import {ITemplateNode} from '../types/template';
 import putNodes from '../util/putNodes';
-import * as styleManager from './style';
+import styleManager from './style';
 
 export interface ITagOptions {
   Base?: IComponentConstructor;
@@ -14,9 +14,9 @@ export interface ITagOptions {
   css?: string;
 }
 
-export const components: {[key: string]: IComponentInfo} = {};
+const components: {[key: string]: IComponentInfo} = {};
 
-export function tag(name: string, options: ITagOptions): void {
+function tag(name: string, options: ITagOptions): void {
   name = name.toLowerCase();
   if (Object.prototype.hasOwnProperty.call(components, name)) {
     throw new Error('It has already been registered.');
@@ -50,15 +50,15 @@ export function tag(name: string, options: ITagOptions): void {
   };
 }
 
-export function has(name: string): boolean {
+function has(name: string): boolean {
   return Object.prototype.hasOwnProperty.call(components, name);
 }
 
-export function get(name: string): IComponentInfo {
+function get(name: string): IComponentInfo {
   return components[name];
 }
 
-export function mount(target: string | Element | NodeListOf<Element>): Promise<IComponent | IComponent[]> {
+function mount(target: string | Element | NodeListOf<Element>): Promise<IComponent | IComponent[]> {
   let nodes: Element[];
   if (typeof target === 'string') {
     nodes = Array.from(document.querySelectorAll(target));
@@ -94,3 +94,11 @@ export function mount(target: string | Element | NodeListOf<Element>): Promise<I
     return tags;
   });
 }
+
+export default {
+  components,
+  get,
+  has,
+  mount,
+  tag,
+};

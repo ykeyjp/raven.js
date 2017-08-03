@@ -1,4 +1,4 @@
-import * as refs from '../component/refs';
+import refs from '../component/refs';
 import {IComponent} from '../types/IComponent';
 import {IVNode} from '../types/IVNode';
 import {ITemplateNode} from '../types/template';

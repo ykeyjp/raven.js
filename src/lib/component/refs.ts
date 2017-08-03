@@ -1,6 +1,6 @@
 import {IComponent} from '../types/IComponent';
 
-export function add(component: IComponent, ref: string, target: IComponent | Node) {
+function add(component: IComponent, ref: string, target: IComponent | Node) {
   if (!component.refs) {
     return;
   }
@@ -13,7 +13,7 @@ export function add(component: IComponent, ref: string, target: IComponent | Nod
   }
 }
 
-export function remove(component: IComponent, ref: string, target: IComponent | Node) {
+function remove(component: IComponent, ref: string, target: IComponent | Node) {
   if (!component.refs) {
     return;
   }
@@ -32,3 +32,8 @@ export function remove(component: IComponent, ref: string, target: IComponent | 
     delete component.refs[ref];
   }
 }
+
+export default {
+  add,
+  remove,
+};

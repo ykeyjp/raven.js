@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as mixin from '../../lib/system/mixin';
+import mixin from '../../lib/system/mixin';
 
 test('simple', t => {
   mixin.register('m1', {name: 'm1', func() {}});

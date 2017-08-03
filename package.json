@@ -1,7 +1,7 @@
 {
   "name": "@ykey/raven",
   "description": "Web Frontend Framework",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "author": {
     "name": "ykeyjp",
     "email": "ykey.jp@gmail.com",
@@ -9,17 +9,17 @@
   },
   "ava": {
     "files": [
-      "test/**/*.test.js"
+      "test/test/**/*.test.js"
     ],
     "source": [
-      "lib/**/*.js"
+      "test/lib/**/*.js"
     ],
     "powerAssert": false
   },
   "browser": "./dist/raven.js",
   "bugs": "https://github.com/ykeyjp/raven.js/issues",
   "dependencies": {
-    "@ykey/util": "^0.0.6"
+    "@ykey/util": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.16",
@@ -29,9 +29,9 @@
     "nyc": "^11.0.3",
     "prettier": "^1.5.3",
     "rollup": "^0.45.2",
+    "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-typescript": "^0.8.1",
     "tslint": "^5.5.0",
     "typedoc": "^0.8.0",
     "typescript": "^2.4.2",
@@ -44,6 +44,7 @@
     "package.json",
     "README.md",
     "lib",
+    "es6",
     "dist",
     "doc"
   ],
@@ -56,15 +57,17 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
+  "module": "es6/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ykeyjp/raven.js.git"
   },
   "scripts": {
-    "build": "node ./node_modules/typescript/bin/tsc -p tsconfig.json",
-    "build:watch": "node ./node_modules/typescript/bin/tsc -p tsconfig.json -w",
-    "bundle": "node bundle.js",
-    "doc": "typedoc --out doc --mode modules --target ES6 src/lib/**/*.ts",
+    "build": "run-p build:es5 build:es6 build:bundle",
+    "build:bundle": "node bundle.js",
+    "build:es5": "node ./node_modules/typescript/bin/tsc -p tsconfig.es5.json",
+    "build:es6": "node ./node_modules/typescript/bin/tsc -p tsconfig.json",
+    "doc": "typedoc --out doc --mode modules",
     "format": "prettier --write --print-width 120 --single-quote --semi=true --trailing-comma es5 --no-bracket-spacing src/{lib,test}/**/*.ts",
     "lint": "tslint src/**/*.ts",
     "report": "run-s test:build report:cover report:html",
